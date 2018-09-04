@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Demite Bundled.Plugins", "The Demite Bundled.Plugins.csproj", "{89C8F9D1-BCC6-E82F-0D22-717AEE960779}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Demite Bundled", "The Demite Bundled.csproj", "{3483F5A2-25DF-D233-D99E-62468041BF69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Demite Bundled.Editor.Plugins", "The Demite Bundled.Editor.Plugins.csproj", "{04D6E978-DA88-09D6-722C-07C3FB794C26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Demite Bundled.Editor", "The Demite Bundled.Editor.csproj", "{33FE4E43-A36F-518C-FCFB-5FA397C5A669}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89C8F9D1-BCC6-E82F-0D22-717AEE960779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C8F9D1-BCC6-E82F-0D22-717AEE960779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C8F9D1-BCC6-E82F-0D22-717AEE960779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89C8F9D1-BCC6-E82F-0D22-717AEE960779}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3483F5A2-25DF-D233-D99E-62468041BF69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3483F5A2-25DF-D233-D99E-62468041BF69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3483F5A2-25DF-D233-D99E-62468041BF69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3483F5A2-25DF-D233-D99E-62468041BF69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04D6E978-DA88-09D6-722C-07C3FB794C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04D6E978-DA88-09D6-722C-07C3FB794C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04D6E978-DA88-09D6-722C-07C3FB794C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04D6E978-DA88-09D6-722C-07C3FB794C26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33FE4E43-A36F-518C-FCFB-5FA397C5A669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33FE4E43-A36F-518C-FCFB-5FA397C5A669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33FE4E43-A36F-518C-FCFB-5FA397C5A669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33FE4E43-A36F-518C-FCFB-5FA397C5A669}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
