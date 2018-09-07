@@ -16,6 +16,7 @@ public class Assessment : MonoBehaviour
     //wordinput
     public Text FieldQuest;
     public Text TextBoxQuest;
+    public Text KeyWord;
     public IDbConnection dbconn;
     private string connectionString;
 
@@ -58,10 +59,11 @@ public class Assessment : MonoBehaviour
         AccesControl = DataPhonetic.GetComponent<SpeechRecognizer>();
         DataService("wordlist.db");
         ConnectionDB();
-        
+
 
         //string conn = "URI=file:" + connectionString;
         //dbconn = (IDbConnection)new SqliteConnection(conn);
+        keyWord();
         phoneticResult();
         //StartCoroutine(getUnityWebRequest());
        
@@ -255,6 +257,27 @@ public class Assessment : MonoBehaviour
         Debug.Log(PhoneticValue);
     }
 
+    public void keyWord()
+    {
+        dbconn.Open();
+        string word = "";
+        IDbCommand dbcmd = dbconn.CreateCommand();
+        string sqlquery = string.Format("SELECT * FROM WordList ORDER BY RANDOM() LIMIT 1");
+        dbcmd.CommandText = sqlquery;
+        IDataReader reader = dbcmd.ExecuteReader();
+        while (reader.Read())
+        {
+            word = reader.GetString(1);
+
+        }
+        reader.Close();
+        reader = null;
+        dbcmd.Dispose();
+        dbcmd = null;
+        dbconn.Close();
+
+        KeyWord.text = word;
+    }
 
     string findPhonetic(string userInput)
     {
@@ -387,7 +410,8 @@ public class Assessment : MonoBehaviour
             TextBoxAssesment.text += "\nEuclidean: " + EC;
             TextBoxAssesment.text += "\nLevenstein: " + distance;
             TextBoxAssesment.text += "\nSimilarity: " + sim +"%";
-
+            keyWord();
+            phoneticResult();
             AccesControl.ConData = false;
 
         }
