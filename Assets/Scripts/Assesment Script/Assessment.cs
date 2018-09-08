@@ -51,6 +51,11 @@ public class Assessment : MonoBehaviour
     string phone;
     string ipa;
     float sim;
+    double simMH;
+    double simEC;
+
+    double eMH;
+    double eEC;
     int c;
 
     // Use this for initialization
@@ -65,8 +70,9 @@ public class Assessment : MonoBehaviour
         //dbconn = (IDbConnection)new SqliteConnection(conn);
         keyWord();
         phoneticResult();
+
         //StartCoroutine(getUnityWebRequest());
-       
+
     }
 
 
@@ -107,42 +113,80 @@ public class Assessment : MonoBehaviour
         dbconn = (IDbConnection)new SqliteConnection(conn);
 
     }
-    public void ManhattanDistance()
+    public void ManhattanDistance(string ah, string ab)
     {
         LevenshteinDistance(phone, ipa);
 
         int a = Math.Abs(sylA - sylB);
-        int b = Math.Abs(distance);
-        int c = Math.Abs(subK0A - subK0B);
-        int d = Math.Abs(subK1A - subK1B);
-        int e = Math.Abs(subK2A - subK2B);
-        
+        //int b = Math.Abs(distance);
+        int c = Math.Abs(ah.Length - ab.Length);
+        //int c = Math.Abs(subK0A - subK0B);
+        //int d = Math.Abs(subK1A - subK1B);
+        //int e = Math.Abs(subK2A - subK2B);
 
-        MH = a + b + c + d + e ;
 
-        
+        MH = a + c;
+
+        if (ah.Length > ab.Length)
+        {
+            string tmp = ah;
+            ah = ab;
+            ab = tmp;
+        }
+
+        if (sylA > sylB)
+        {
+            int tmps = sylA;
+            sylA = sylB;
+            sylB = tmps;
+        }
+        double z = sylB + ab.Length;
+        //simMH1 =(MH*100)/ (sylB + ab.Length);
+        eMH = MH / z;
+        simMH = sim - (eMH * (sim * 0.25));
+
         //Debug.Log(a);
         //Debug.Log(b);
         //Debug.Log(c);
         //Debug.Log(d);
         //Debug.Log(e);
+
         Debug.Log(MH);
     }
 
-    public void EuclideanDistance()
+    public void EuclideanDistance(string ah, string ab)
     {
         LevenshteinDistance(phone, ipa);
         int a = (sylA - sylB);
-        int b = (distance);
-        int c = (subK0A - subK0B);
-        int d = (subK1A - subK1B);
-        int e = (subK2A - subK2A);
-        
+        //int b = (distance);
+        int c = (ah.Length - ab.Length);
+        //int c = (subK0A - subK0B);
+        //int d = (subK1A - subK1B);
+        //int e = (subK2A - subK2A);
 
 
 
-        EC = Math.Sqrt((a * a) + (b * b) + (c * c) + (d * d) + (e * e));
 
+        EC = Math.Sqrt((a * a) + (c * c));
+
+        if (ah.Length > ab.Length)
+        {
+            string tmp = ah;
+            ah = ab;
+            ab = tmp;
+        }
+
+        if (sylA > sylB)
+        {
+            int tmps = sylA;
+            sylA = sylB;
+            sylB = tmps;
+        }
+        double z = sylB + ab.Length;
+        eEC = EC / z;
+        simEC = sim - (eEC * (sim * 0.25));
+        //
+        //simEC = 100 - ((EC * 100) / z);
         Debug.Log(EC);
 
     }
@@ -277,6 +321,7 @@ public class Assessment : MonoBehaviour
         dbconn.Close();
 
         KeyWord.text = word;
+        
     }
 
     string findPhonetic(string userInput)
@@ -396,22 +441,28 @@ public class Assessment : MonoBehaviour
             TextBoxAnswer.text += "\nSub Kategori 1: " + subK1B;
             TextBoxAnswer.text += "\nSub Kategori 2: " + subK2B;
             TextBoxAnswer.text += "\nSimilar Words: " + simWords;
-
+            
             AssesmentWord(FieldQuest.text);
-            ManhattanDistance();
-            EuclideanDistance();
+            ManhattanDistance(phone, ipa);
+            EuclideanDistance(phone, ipa);
             LevenshteinDistance(phone, ipa);
+            keyWord();
+            phoneticResult();
 
-            
-            
+
+
+
 
             TextBoxAssesment.text = "";
             TextBoxAssesment.text += "Manhattan: " + MH;
+            TextBoxAssesment.text += "\ndistance MH: " + eMH + "%";
+            TextBoxAssesment.text += "\nSimilarity MH2: " + simMH + "%";
             TextBoxAssesment.text += "\nEuclidean: " + EC;
+            TextBoxAssesment.text += "\ndistance EC: " + eEC + "%";
+            TextBoxAssesment.text += "\nSimilarity EC2: " + simEC + "%";
             TextBoxAssesment.text += "\nLevenstein: " + distance;
-            TextBoxAssesment.text += "\nSimilarity: " + sim +"%";
-            keyWord();
-            phoneticResult();
+            TextBoxAssesment.text += "\nSimilarity: " + sim + "%";
+
             AccesControl.ConData = false;
 
         }
