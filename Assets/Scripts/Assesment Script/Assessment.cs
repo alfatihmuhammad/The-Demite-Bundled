@@ -53,11 +53,13 @@ public class Assessment : MonoBehaviour
     float sim;
     double simMH;
     double simEC;
+    int level;
 
     double eMH;
     double eEC;
     int c;
 
+    double damage;
     // Use this for initialization
     void Start()
     {
@@ -144,7 +146,7 @@ public class Assessment : MonoBehaviour
         //simMH1 =(MH*100)/ (sylB + ab.Length);
         eMH = MH / z;
         simMH = sim - (eMH * (sim * 0.25));
-
+        damage = (simMH *  level)/10 ;
         //Debug.Log(a);
         //Debug.Log(b);
         //Debug.Log(c);
@@ -265,6 +267,8 @@ public class Assessment : MonoBehaviour
             subK0A = reader.GetInt32(10);
             subK1A = reader.GetInt32(11);
             subK2A = reader.GetInt32(12);
+            level = reader.GetInt32(15);
+
         }
         dbconn.Close();
         //DataMuse
@@ -462,6 +466,8 @@ public class Assessment : MonoBehaviour
             TextBoxAssesment.text += "\nSimilarity EC2: " + simEC + "%";
             TextBoxAssesment.text += "\nLevenstein: " + distance;
             TextBoxAssesment.text += "\nSimilarity: " + sim + "%";
+            TextBoxAssesment.text += "\nDamage: " + damage  ;
+
 
             AccesControl.ConData = false;
 
